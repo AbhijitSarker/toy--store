@@ -15,12 +15,14 @@ const Navbar = () => {
         <nav className='w-full z-50 flex py-2 justify-between items-center sticky top-0 text-[#302a3c] font-serif font-semibold shadow-lg bg-[#e8edfc]'>
 
             <div className='container mx-auto flex items-center '>
-                <Link><img className='h-16' src={logo} alt="" /></Link>
+                <Link to='/'><img className='h-16' src={logo} alt="" /></Link>
 
                 <ul className=' sm:flex hidden justify-center items-center gap-5 text-2xl flex-1'>
                     {navLinks}
                 </ul>
-                <button className='h-10 px-3  py-1 text-2xl rounded-md text-white bg-[#3d91c2] hover:bg-[#31749b] ml-auto transition ease-in-out duration-500'>Login</button>
+                <Link to='/login'>
+                    <button className='h-10 px-3  py-1 text-2xl rounded-md text-white bg-[#3d91c2] hover:bg-[#31749b] ml-auto transition ease-in-out duration-500'>Login</button>
+                </Link>
             </div>
 
             <div className='sm:hidden flex flex-1 justify-end  items-center sidebar'>
