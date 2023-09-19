@@ -41,3 +41,9 @@ body {
     transform: translateY(0);
   }
 }
+
+.banner-gradient{
+  
+    
+ background: linear-gradient(90deg, rgba(0, 0, 0, 0.11) 0%, rgba(0, 0, 0, 0.60) 100%);
+}
