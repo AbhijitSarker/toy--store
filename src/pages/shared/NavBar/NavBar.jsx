@@ -1,14 +1,17 @@
 import React, { useContext, useState } from 'react';
 import { GiCrossedBones } from 'react-icons/gi';
 import { FaBarsStaggered } from "react-icons/fa6";
+import { BiUserCircle } from "react-icons/bi";
+
 import { Link } from 'react-router-dom';
 import logo from '../../../assets/toy-store.png'
 import { AuthContext } from '../../../provider/AuthProvider';
 
 const Navbar = () => {
     const { user, logout } = useContext(AuthContext);
-
+    console.log(user)
     const [toggle, setToggle] = useState(false);
+    const [profileToggle, setProfileToggle] = useState(false);
 
     const handleLogout = (event) => {
         logout();
@@ -16,10 +19,13 @@ const Navbar = () => {
     };
 
     const navLinks = <>
-        <Link className='hover:bg-[#d2d6e0] px-2 py-1 rounded'><li>Home</li></Link>
-        <Link className='hover:bg-[#d2d6e0] px-2 py-1 rounded'>Store</Link>
-        <Link className='hover:bg-[#d2d6e0] px-2 py-1 rounded'>About</Link>
+        <Link className='hover:bg-[#d2d6e0] hover:text-black px-2 py-1 rounded'><li>Home</li></Link>
+        <Link className='hover:bg-[#d2d6e0] hover:text-black px-2 py-1 rounded'>Store</Link>
+        <Link className='hover:bg-[#d2d6e0] hover:text-black px-2 py-1 rounded'>About</Link>
     </>
+
+
+
 
     return (
         <nav className='w-full z-50 flex py-2 justify-between items-center sticky top-0 text-[#302a3c] font-serif font-semibold shadow-lg bg-[#e8edfc]'>
@@ -31,9 +37,20 @@ const Navbar = () => {
                     {navLinks}
                 </ul>
                 {
-                    user ? <button onClick={handleLogout} className='h-10 px-3  py-1 text-2xl rounded-md text-white bg-[#3d91c2] hover:bg-[#31749b] ml-auto transition ease-in-out duration-500'>Logout</button>
+                    user ? <>
+
+                        <BiUserCircle onClick={() => setProfileToggle((prev) => !prev)} className='text-4xl mr-5 cursor-pointer ml-auto' />
+
+                        <div className={`${profileToggle ? 'flex flex-col' : 'hidden'} items-center text-white p-6 absolute top-16 bg-[#2c698d] right-0 mx-4 my-2 min-w-[140px] rounded-xl sidebar`}>
+                            <img src={user.photoURL} className='h-16 w-16 mb-4' alt="" />
+                            <p>{user.displayName}</p>
+                            <p >{user.email}</p> <br />
+                            <button onClick={handleLogout} className='h-10 px-3  py-1 text-2xl rounded-md text-white bg-[#272643] hover:bg-[#131221] ml-auto transition ease-in-out duration-500'>Logout</button>
+                        </div>
+
+                    </>
                         : <Link to='/login'>
-                            <button className='h-10 px-3  py-1 text-2xl rounded-md text-white bg-[#3d91c2] hover:bg-[#31749b] ml-auto transition ease-in-out duration-500'>Login</button>
+                            <button className='h-10 px-3 ml-auto py-1 text-2xl rounded-md text-white bg-[#272643] hover:bg-[#131221]  transition ease-in-out duration-500'>Login</button>
                         </Link>
                 }
 
@@ -46,14 +63,14 @@ const Navbar = () => {
                     {toggle ? <GiCrossedBones className='w-6  h-6 ml-2' /> : <FaBarsStaggered className='w-6 h-6 ml-2' />}
                 </div>
 
-                <div className={`${toggle ? 'flex' : 'hidden'} p-6 absolute top-10 bg-[#e8edfc] right-0 mx-4 my-2 min-w-[140px] rounded-xl sidebar`}>
+                <div className={`${toggle ? 'flex' : 'hidden'} p-6 absolute top-10 bg-[#2c698d] text-white right-0 mx-4 my-2 min-w-[140px] rounded-xl sidebar`}>
                     <ul className=' flex flex-col justify-end items-center flex-1'>
                         {navLinks}
                     </ul>
                 </div>
 
             </div>
-        </nav>
+        </nav >
     );
 };
 

@@ -11,7 +11,7 @@ const Register = () => {
     const [error, setError] = useState('');
     const [show, setShow] = useState(false);
 
-    const { createUser, loginWithGoogle } = useContext(AuthContext);
+    const { createUser, loginWithGoogle, loginWithGithub } = useContext(AuthContext);
     const navigate = useNavigate();
 
     const handleRegister = (event) => {
@@ -48,6 +48,14 @@ const Register = () => {
             })
 
     }
+
+    const handleGithubSignIn = () => {
+        loginWithGithub()
+            .then(result => {
+                navigate('/');
+            })
+    }
+
 
 
     return (
@@ -123,9 +131,9 @@ const Register = () => {
                         <p>Already Have An Account? <Link className='text-orange-600' to='/login'>Login</Link></p>
                         <p className='my-2'>Or Login With</p>
                         <div className='flex justify-center gap-10 text-3xl bg-slate-200 p-2 rounded-md'>
-                            <BsGithub />
-                            <BsFacebook />
                             <FcGoogle onClick={handleGoogleLogin} />
+                            <BsGithub onClick={handleGithubSignIn} />
+                            <BsFacebook />
 
                         </div>
                     </div>

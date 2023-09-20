@@ -11,7 +11,7 @@ const Login = () => {
     const [error, setError] = useState('');
 
     const [show, setShow] = useState(false);
-    const { login, loginWithGoogle } = useContext(AuthContext);
+    const { login, loginWithGoogle, loginWithGithub } = useContext(AuthContext);
     const navigate = useNavigate();
 
 
@@ -40,6 +40,13 @@ const Login = () => {
                 navigate('/');
             })
 
+    }
+
+    const handleGithubSignIn = () => {
+        loginWithGithub()
+            .then(result => {
+                navigate('/');
+            })
     }
     return (
         <div className='lg:flex container mx-auto justify-evenly items-center mt-8 lg:mt-20 font-serif'>
@@ -97,9 +104,9 @@ const Login = () => {
                         <p>Don't Have An Account? <Link className='text-orange-600' to='/register'>Register</Link></p>
                         <p className='my-2'>Or Login With</p>
                         <div className='flex justify-center gap-10 text-3xl bg-slate-200 p-2 rounded-md'>
-                            <BsGithub />
-                            <BsFacebook />
                             <FcGoogle onClick={handleGoogleLogin} />
+                            <BsGithub onClick={handleGithubSignIn} />
+                            <BsFacebook />
 
                         </div>
                     </div>
