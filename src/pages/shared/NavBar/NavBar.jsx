@@ -9,11 +9,10 @@ import { AuthContext } from '../../../provider/AuthProvider';
 
 const Navbar = () => {
     const { user, logout } = useContext(AuthContext);
-    console.log(user)
     const [toggle, setToggle] = useState(false);
     const [profileToggle, setProfileToggle] = useState(false);
 
-    const handleLogout = (event) => {
+    const handleLogout = () => {
         logout();
 
     };
@@ -39,7 +38,7 @@ const Navbar = () => {
                 {
                     user ? <>
 
-                        <BiUserCircle onClick={() => setProfileToggle((prev) => !prev)} className='text-4xl mr-5 cursor-pointer ml-auto' />
+                        <BiUserCircle onClick={() => setProfileToggle((prev) => !prev)} className='text-4xl mr-5 ml-auto cursor-pointer ' />
 
                         <div className={`${profileToggle ? 'flex flex-col' : 'hidden'} items-center text-white p-6 absolute top-16 bg-[#2c698d] right-0 mx-4 my-2 min-w-[140px] rounded-xl sidebar`}>
                             <img src={user.photoURL} className='h-16 w-16 mb-4' alt="" />
@@ -49,8 +48,8 @@ const Navbar = () => {
                         </div>
 
                     </>
-                        : <Link to='/login'>
-                            <button className='h-10 px-3 ml-auto py-1 text-2xl rounded-md text-white bg-[#272643] hover:bg-[#131221]  transition ease-in-out duration-500'>Login</button>
+                        : <Link className='ml-auto' to='/login'>
+                            <button className='h-10 px-3 py-1 text-2xl rounded-md text-white bg-[#272643] hover:bg-[#131221]  transition ease-in-out duration-500'>Login</button>
                         </Link>
                 }
 

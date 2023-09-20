@@ -59,10 +59,10 @@ const Register = () => {
 
 
     return (
-        <div className='lg:flex container mx-auto justify-evenly items-center mt-8 lg:mt-20 font-serif'>
+        <div className='lg:flex container mx-auto justify-evenly items-center my-8 lg:my-20 font-serif'>
             <img className='hidden lg:flex' src={img} alt="" />
 
-            <div className="w-80 container mx-auto mt-5 p-6 bg-[#e8edfc] shadow-md rounded-md">
+            <div className="w-72 md:w-96 container mx-auto mt-5 p-6 bg-[#e8edfc] shadow-md rounded-md">
                 <h2 className="text-2xl font-semibold text-center mb-6">Register</h2>
                 <form onSubmit={handleRegister}>
                     <div className="mb-4">
@@ -120,7 +120,7 @@ const Register = () => {
                     </div>
 
                     <div className="text-center">
-                        <input type="submit" value='Register' className='h-10 px-3  py-1 text-2xl rounded-md text-white bg-[#3d91c2] hover:bg-[#31749b] ml-auto transition ease-in-out duration-500' />
+                        <input type="submit" value='Register' className='h-10 px-3  py-1 text-2xl rounded-md text-white bg-[#272643] hover:bg-[#131221] ml-auto transition ease-in-out duration-500' />
                     </div>
 
                     <p className='border-y-[1px] text-red-600 border-black  mt-5'>
