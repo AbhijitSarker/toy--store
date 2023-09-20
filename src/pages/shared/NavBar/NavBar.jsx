@@ -1,16 +1,26 @@
-import React, { useState } from 'react';
+import React, { useContext, useState } from 'react';
 import { GiCrossedBones } from 'react-icons/gi';
 import { FaBarsStaggered } from "react-icons/fa6";
 import { Link } from 'react-router-dom';
 import logo from '../../../assets/toy-store.png'
+import { AuthContext } from '../../../provider/AuthProvider';
 
 const Navbar = () => {
+    const { user, logout } = useContext(AuthContext);
+
     const [toggle, setToggle] = useState(false);
+
+    const handleLogout = (event) => {
+        logout();
+
+    };
+
     const navLinks = <>
         <Link className='hover:bg-[#d2d6e0] px-2 py-1 rounded'><li>Home</li></Link>
         <Link className='hover:bg-[#d2d6e0] px-2 py-1 rounded'>Store</Link>
         <Link className='hover:bg-[#d2d6e0] px-2 py-1 rounded'>About</Link>
     </>
+
     return (
         <nav className='w-full z-50 flex py-2 justify-between items-center sticky top-0 text-[#302a3c] font-serif font-semibold shadow-lg bg-[#e8edfc]'>
 
@@ -20,9 +30,14 @@ const Navbar = () => {
                 <ul className=' sm:flex hidden justify-center items-center gap-5 text-2xl flex-1'>
                     {navLinks}
                 </ul>
-                <Link to='/login'>
-                    <button className='h-10 px-3  py-1 text-2xl rounded-md text-white bg-[#3d91c2] hover:bg-[#31749b] ml-auto transition ease-in-out duration-500'>Login</button>
-                </Link>
+                {
+                    user ? <button onClick={handleLogout} className='h-10 px-3  py-1 text-2xl rounded-md text-white bg-[#3d91c2] hover:bg-[#31749b] ml-auto transition ease-in-out duration-500'>Logout</button>
+                        : <Link to='/login'>
+                            <button className='h-10 px-3  py-1 text-2xl rounded-md text-white bg-[#3d91c2] hover:bg-[#31749b] ml-auto transition ease-in-out duration-500'>Login</button>
+                        </Link>
+                }
+
+
             </div>
 
             <div className='sm:hidden flex flex-1 justify-end  items-center sidebar'>
