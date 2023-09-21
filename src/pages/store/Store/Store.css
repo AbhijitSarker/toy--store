@@ -1,9 +1,6 @@
 .box{
     border: 1px solid gray;
-    width: 1000px;
-    margin: auto;
-    margin-top: 20px;
-    margin-bottom: 40px;
+    
 }
 
 .tabs{
@@ -60,12 +57,13 @@
 
 .contents{
     position: relative;
-
+    display: flex;
+    justify-content: space-between;
 }
 
 .content{
     display: none;
-position: relative;
+    position: relative;
 }
 
 .active-content{
@@ -83,4 +81,55 @@ position: relative;
     to{
         margin-left: 10px;
   }
+}
+
+.sub-tabs{
+    display: flex;
+    justify-content: space-between;
+
+}
+
+.sub-tab{
+    background: #ccc;
+    flex: 1;
+    padding: 10px;
+    text-align: center;
+    border: 1px solid gray;
+    border-top:  none;
+    cursor: pointer;
+    position: relative;
+}
+
+.active-sub-tab{
+    border:  none;
+    background: #fff;
+}
+
+.active-sub-tab::after{
+    border-top: 2px solid red;
+    content: '';
+    position: absolute;
+    top: 0;
+    left: 0;
+    right: 0;
+    bottom: 0;
+    width: 100%;
+    background: initial;
+    animation: new .7s;
+}
+
+.sub-contents{
+    position: relative;
+    
+}
+.sub-tab-content{
+ display: none;
+position: relative;
+}
+
+.active-sub-tab-content{
+    display: block;
+    margin: 10px;
+    transition: all 1s ease-in-out;
+    animation: content .3s;
 }

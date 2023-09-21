@@ -2,12 +2,6 @@ import React, { useEffect, useState } from 'react';
 import './Store.css'
 const Store = () => {
 
-    const [state, setState] = useState(1);
-    const action = (index) => {
-        setState(index);
-        console.log(index);
-    }
-
     const [toys, setToys] = useState([]);
     const [categories, setCategories] = useState([]);
     const [subcategories, setSubcategories] = useState([]);
@@ -27,47 +21,53 @@ const Store = () => {
             .then(data => setToys(data))
     }, [])
 
-    // console.log(categories)
-    // console.log(subcategories)
-    // console.log(toys)
-    return (
-        <div className='box'>
+    const [state, setState] = useState(1);
+    const [subTab, setSubTab] = useState(11);
+    const [tabToy, setTabToy] = useState([]);
 
+    const action = (index) => {
+        setState(index);
+    }
+
+    const action2 = (index) => {
+        setSubTab(index);
+    }
+
+    const findToy = (index) => {
+        const subCatToys = toys.filter(toy => toy.subcategory_id === subTab)
+        return subCatToys;
+    }
+    const toyforcat = findToy()
+
+    return (
+        <div className='box container mx-auto my-20  '>
             {/* tabs */}
             <div className='tabs'>
-                <div onClick={() => action(1)} className={`tab ${state === 1 ? 'active-tab' : ''}`}>
-                    tab 1
-                </div>
-
-                <div onClick={() => action(2)} className={`tab ${state === 2 ? 'active-tab' : ''}`}>
-                    tab2
-                </div>
-
-                <div onClick={() => action(3)} className={`tab ${state === 3 ? 'active-tab' : ''}`}>
-                    tab 3
-                </div>
+                {
+                    categories.map(category => <div onClick={() => action(category.category_id)} className={`tab ${state === category.category_id ? 'active-tab' : ''}`}>
+                        {category.name}
+                    </div>)
+                }
             </div>
-
             {/* contents */}
-
             <div className="contents">
-                <div className={`content ${state === 1 ? 'active-content' : ''}`}>
-                    <h2>content 1</h2>
-                    <p>Lorem, ipsum dolor sit amet consectetur adipisicing elit. Facilis tenetur animi nesciunt exercitationem nisi! Nobis atque recusandae mollitia esse voluptatibus?</p>
-                </div>
-
-                <div className={`content ${state === 2 ? 'active-content' : ''}`}>
-                    <h2>content 1</h2>
-                    <p>Lorem, ipsum dolor sit amet consectetur adipisicing elit. Facilis tenetur animi nesciunt exercitationem nisi! Nobis atque recusandae mollitia esse voluptatibus?</p>
-                </div>
-
-                <div className={`content ${state === 3 ? 'active-content' : ''}`}>
-                    <h2>content 1</h2>
-                    <p>Lorem, ipsum dolor sit amet consectetur adipisicing elit. Facilis tenetur animi nesciunt exercitationem nisi! Nobis atque recusandae mollitia esse voluptatibus?</p>
-                </div>
+                {
+                    subcategories.map(subcategory => <div className=''>
+                        <div className={`content ${state === subcategory.category_id ? 'active-content' : ''}`}>
+                            <div onClick={() => action2(subcategory.subcategory_id)} className={`sub-tab ${subTab === subcategory.subcategory_id ? 'active-sub-tab' : ''}`}>
+                                <h1> {subcategory.name} </h1>
+                            </div>
+                        </div>
+                        <div className='sub-contents'>
+                            {
+                                toyforcat.map(toy => <div className={`sub-tab-content ${subTab === subcategory.subcategory_id ? 'active-sub-tab-content' : ''}`}>
+                                    <h2>{toy.name}</h2>
+                                </div>)
+                            }
+                        </div>
+                    </div>)
+                }
             </div>
-
-
         </div>
     );
 };
