@@ -104,8 +104,8 @@ const Login = () => {
                         <p>Don't Have An Account? <Link className='text-orange-600' to='/register'>Register</Link></p>
                         <p className='my-2'>Or Login With</p>
                         <div className='flex justify-center gap-10 text-3xl bg-slate-200 p-2 rounded-md'>
-                            <FcGoogle onClick={handleGoogleLogin} />
-                            <BsGithub onClick={handleGithubSignIn} />
+                            <FcGoogle className='cursor-pointer' onClick={handleGoogleLogin} />
+                            <BsGithub className='cursor-pointer' onClick={handleGithubSignIn} />
                             <BsFacebook />
 
                         </div>

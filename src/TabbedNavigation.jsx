@@ -52,20 +52,20 @@ const Store = () => {
             {/* contents */}
             <div className="contents">
                 {
-                    subcategories.map(subcategory => <div className=''>
+                    subcategories.map(subcategory =>
                         <div className={`content ${state === subcategory.category_id ? 'active-content' : ''}`}>
                             <div onClick={() => action2(subcategory.subcategory_id)} className={`sub-tab ${subTab === subcategory.subcategory_id ? 'active-sub-tab' : ''}`}>
                                 <h1> {subcategory.name} </h1>
                             </div>
+                            <div className='sub-contents'>
+                                {
+                                    toyforcat.map(toy => <div className={`sub-tab-content ${subTab === subcategory.subcategory_id ? 'active-sub-tab-content' : ''}`}>
+                                        <h2>{toy.name}</h2>
+                                    </div>)
+                                }
+                            </div>
                         </div>
-                        <div className='sub-contents'>
-                            {
-                                toyforcat.map(toy => <div className={`sub-tab-content ${subTab === subcategory.subcategory_id ? 'active-sub-tab-content' : ''}`}>
-                                    <h2>{toy.name}</h2>
-                                </div>)
-                            }
-                        </div>
-                    </div>)
+                    )
                 }
             </div>
         </div>
