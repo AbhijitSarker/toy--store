@@ -1,5 +1,6 @@
 import React, { useEffect, useState } from 'react';
 import './Store.css'
+import ToyCard from '../ToyCard/ToyCard';
 const Store = () => {
 
     const [toys, setToys] = useState([]);
@@ -21,52 +22,18 @@ const Store = () => {
             .then(data => setToys(data))
     }, [])
 
-    const [state, setState] = useState(1);
-    const [subTab, setSubTab] = useState(11);
-    const [tabToy, setTabToy] = useState([]);
 
-    const action = (index) => {
-        setState(index);
-    }
-
-    const action2 = (index) => {
-        setSubTab(index);
-    }
-
-    const findToy = (index) => {
-        const subCatToys = toys.filter(toy => toy.subcategory_id === subTab)
-        return subCatToys;
-    }
-    const toyforcat = findToy()
 
     return (
-        <div className='box container mx-auto my-20  '>
-            {/* tabs */}
-            <div className='tabs'>
+        <div>
+            <div className='grid grid-cols-3 gap-5 mx-auto container'>
                 {
-                    categories.map(category => <div onClick={() => action(category.category_id)} className={`tab ${state === category.category_id ? 'active-tab' : ''}`}>
-                        {category.name}
-                    </div>)
+                    toys.map(toy => <ToyCard
+                        toy={toy}
+                        key={toy._id}
+                    ></ToyCard>)
                 }
-            </div>
-            {/* contents */}
-            <div className="contents">
-                {
-                    subcategories.map(subcategory =>
-                        <div className={`content ${state === subcategory.category_id ? 'active-content' : ''}`}>
-                            <div onClick={() => action2(subcategory.subcategory_id)} className={`sub-tab ${subTab === subcategory.subcategory_id ? 'active-sub-tab' : ''}`}>
-                                <h1> {subcategory.name} </h1>
-                            </div>
-                            <div className='sub-contents'>
-                                {
-                                    toyforcat.map(toy => <div className={`sub-tab-content ${subTab === subcategory.subcategory_id ? 'active-sub-tab-content' : ''}`}>
-                                        <h2>{toy.name}</h2>
-                                    </div>)
-                                }
-                            </div>
-                        </div>
-                    )
-                }
+
             </div>
         </div>
     );

@@ -18,9 +18,9 @@ const Navbar = () => {
     };
 
     const navLinks = <>
-        <Link to='/home' className='hover:bg-[#d2d6e0] hover:text-black px-2 py-1 rounded'><li>Home</li></Link>
+        <Link to='/' className='hover:bg-[#d2d6e0] hover:text-black px-2 py-1 rounded'><li>Home</li></Link>
         <Link to='/store' className='hover:bg-[#d2d6e0] hover:text-black px-2 py-1 rounded'>Store</Link>
-        <Link to='/home' className='hover:bg-[#d2d6e0] hover:text-black px-2 py-1 rounded'>About</Link>
+        <Link to='/' className='hover:bg-[#d2d6e0] hover:text-black px-2 py-1 rounded'>About</Link>
     </>
 
 
